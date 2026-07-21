@@ -44,16 +44,17 @@ st.write(
     "Verify drawing parameters (D02567361 - Splice Sub) against live vendor configurations."
 )
 
-# Quick access links to vendor portals as requested
+# Quick access links to vendor portals using HTML to support target='_blank' securely
 col_link1, col_link2, col_btn = st.columns([2, 2, 3])
 with col_link1:
     st.markdown(
-        "[🔗 Open Tenaris DCP Portal](https://dcp.tenaris.com/)", target="_blank"
+        '<a href="https://dcp.tenaris.com/" target="_blank">🔗 Open Tenaris DCP Portal</a>',
+        unsafe_allow_html=True,
     )
 with col_link2:
     st.markdown(
-        "[🔗 Open VAM Services Configurator](https://www.vamservices.com/product/configurator)",
-        target="_blank",
+        '<a href="https://www.vamservices.com/product/configurator" target="_blank">🔗 Open VAM Services Configurator</a>',
+        unsafe_allow_html=True,
     )
 
 with col_btn:
@@ -89,7 +90,7 @@ with col1:
     selected_drawing = st.selectbox(
         "Select Component Drawing:",
         [
-            "Splice Sub - 5 1/2-23.00# TSH Blue (D02567361)",
+            "Splice Sub - 5 1/2-23.00# TSH Blue (D02567361)[cite: 1]",
             "Revision Drawing B - Connector Hub",
         ],
     )
@@ -97,7 +98,7 @@ with col1:
     st.success("Status: Verified - No interference with shoulders/grooves")
 
     with st.container():
-        st.markdown("**Drawing Number:** D02567361")
+        st.markdown("**Drawing Number:** D02567361[cite: 1]")
         st.markdown("**Drawing Revision:** Rev A[cite: 1]")
         st.markdown(
             "**Top Connection (BOX):** 5 1/2-23.00# TENARISHYDRIL BLUE BOX (BOM #806)[cite: 1]"
