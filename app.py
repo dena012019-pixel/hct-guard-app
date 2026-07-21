@@ -125,14 +125,3 @@ with col2:
                 st.info(
                     "Verification complete: Passed all structural clearance constraints."
                 )
-
-
-  
-
-
-
-
-
-
-             
-   
