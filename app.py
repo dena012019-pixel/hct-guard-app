@@ -12,123 +12,83 @@ st.set_page_config(
 st.markdown(
     """
     <style>
-        .main-header { font-size: 26px; font-weight: 700; color: #1E3A8A; margin-bottom: 0px; }
-        .sub-header { font-size: 14px; color: #64748B; margin-bottom: 20px; }
-        .card { background-color: #f8fafc; padding: 20px; border-radius: 10px; border: 1px solid #e2e8f0; }
-        .success-box { background-color: #f0fdf4; padding: 15px; border-radius: 8px; border: 1px solid #bbf7d0; }
+    .main-header { font-size: 26px; font-weight: 700; color: #1E3A8A; margin-bottom: 0px; }
+    .sub-header { font-size: 14px; color: #64748B; margin-bottom: 20px; }
+    .card { background-color: #f8fafc; padding: 20px; border-radius: 10px; border: 1px solid #e2e8f0; }
+    .success-box { background-color: #f0fdf4; padding: 15px; border-radius: 8px; border: 1px solid #bbf7d0; }
     </style>
-""",
+    """,
     unsafe_allow_html=True,
 )
 
-# Header Section with Halliburton Logo
-col_logo, col_title = st.columns([1, 6])
-with col_logo:
-    st.image(
-        "https://upload.wikimedia.org/wikipedia/commons/1/18/Halliburton_Logo.svg",
-        width=90,
-    )
-with col_title:
+# VAM Data Integration (VAM TOP & VAM 21)
+vam_connections_data = {
+    "VAM TOP": [
+        {"OD": 2.375, "Wall_Th": 0.190, "Weight": 4.60, "Drift": 1.901, "Pin_PED": "2.375 (+0.008/+0.031)", "Pin_PID": "1.969 (-0.010/+0.009)", "Box_BED": "2.677 (0.000/+0.029)", "Box_BID": "1.957 (-0.010/+0.009)"},[cite: 4]
+        {"OD": 2.875, "Wall_Th": 0.217, "Weight": 6.40, "Drift": 2.347, "Pin_PED": "2.875 (+0.008/+0.031)", "Pin_PID": "2.421 (-0.009/+0.010)", "Box_BED": "3.223 (0.000/+0.028)", "Box_BID": "2.409 (-0.010/+0.009)"},[cite: 5]
+        {"OD": 3.500, "Wall_Th": 0.170, "Weight": 6.50, "Drift": 3.035, "Pin_PED": "3.500 (+0.012/+0.031)", "Pin_PID": "3.118 (-0.009/+0.009)", "Box_BED": "3.771 (0.000/+0.028)", "Box_BID": "3.104 (-0.009/+0.010)"},[cite: 6]
+        {"OD": 4.000, "Wall_Th": 0.190, "Weight": 8.20, "Drift": 3.495, "Pin_PED": "4.000 (+0.012/+0.031)", "Pin_PID": "3.583 (-0.010/+0.009)", "Box_BED": "4.300 (0.000/+0.029)", "Box_BID": "3.567 (-0.009/+0.009)"},[cite: 7]
+        {"OD": 4.500, "Wall_Th": 0.224, "Weight": 10.50, "Drift": 3.927, "Pin_PED": "4.500 (+0.016/+0.045)", "Pin_PID": "4.016 (-0.010/+0.009)", "Box_BED": "4.859 (0.000/+0.028)", "Box_BID": "3.999 (-0.009/+0.010)"}[cite: 8]
+    ],
+    "VAM 21": [
+        {"OD": 3.500, "Wall_Th": 0.254, "Weight": 9.20, "Drift": 2.867, "Pin_PED": "3.500 (+0.012/+0.031)", "Pin_PID": "2.976 (-0.020/0.000)", "Box_BED": "3.930 (0.000/+0.028)", "Box_BID": "2.961 (-0.020/0.000)"},[cite: 9]
+        {"OD": 4.500, "Wall_Th": 0.250, "Weight": 11.60, "Drift": 3.875, "Pin_PED": "4.500 (+0.016/+0.045)", "Pin_PID": "3.959 (-0.020/0.000)", "Box_BED": "4.934 (0.000/+0.028)", "Box_BID": "3.942 (-0.020/0.000)"},[cite: 10]
+        {"OD": 5.000, "Wall_Th": 0.296, "Weight": 15.00, "Drift": 4.283, "Pin_PED": "5.000 (+0.016/+0.050)", "Pin_PID": "4.364 (-0.020/0.000)", "Box_BED": "5.504 (0.000/+0.021)", "Box_BID": "4.345 (-0.020/0.000)"},[cite: 11]
+        {"OD": 5.500, "Wall_Th": 0.304, "Weight": 17.00, "Drift": 4.767, "Pin_PED": "5.500 (+0.016/+0.055)", "Pin_PID": "4.892 (-0.020/0.000)", "Box_BED": "6.018 (0.000/+0.054)", "Box_BID": "4.891 (-0.020/0.000)"}
+    ]
+}
+
+# Main Layout Structure matching user interface
+st.markdown('<p class="main-header">⚡ Child Drawing Recognition & Master Path Tracking</p>', unsafe_allow_html=True)
+st.markdown('<p class="sub-header">System Integration & Vendor Database Sync</p>', unsafe_allow_html=True)
+
+col1, col2 = st.columns([1.1, 0.9])
+
+with col1:
+    st.markdown("### 📁 Target Drawing File")
+    st.markdown("Upload Drawing PDF (Child Component)")
+    uploaded_file = st.file_uploader("Upload 200MB per file • PDF", type=["pdf"])
+    
+    # Active Session Select Options including VAM Data entries
+    active_options = [
+        "W.021578-00-00 (Profile Drawing, 3/8 FMJ Hydraulic, Female Connection)",
+    ]
+    for v_type, items in vam_connections_data.items():
+        for idx, item in enumerate(items):
+            active_options.append(f"{v_type} - OD: {item['OD']} in, Wt: {item['Weight']} lb/ft")
+
+    selected_drawing = st.selectbox("Or Select from Active Session:", active_options)
+    
+    if st.button("🔍 Auto-Detect Drawing Type & Path"):
+        st.success("Drawing type and VAM parameters successfully matched and loaded into system session!")
+
+with col2:
+    st.markdown("### ⚙️ System Recognition & Path Tracking Result")
     st.markdown(
-        '<div class="main-header">HCT Engineering Vault</div>',
-        unsafe_allow_html=True,
-    )
-    st.markdown(
-        '<div class="sub-header">Child-to-Parent Propagation & Real-Time Assembly Verification Hub</div>',
-        unsafe_allow_html=True,
-    )
-
-st.divider()
-
-# Section: One-Click Child Drawing Auto-Detection & Path Tracking
-st.markdown("### ⚡ Child Drawing Recognition & Master Path Tracking")
-
-col_upload, col_result = st.columns(2, gap="large")
-
-with col_upload:
-    st.markdown("#### 📂 Target Drawing File")
-    uploaded_child_file = st.file_uploader(
-        "Upload Drawing PDF (Child Component)", type=["pdf"], key="child_upload"
+        """
+        <div class="success-box">
+            ✅ Recognition Complete: Identified as Child Component & VAM Registry!
+        </div>
+        """,
+        unsafe_allow_html=True
     )
     
-    selected_preset = st.selectbox(
-        "Or Select from Active Session:",
-        [
-            "Select Drawing...",
-            "W.021578-00-00 (Profile Drawing, 3/8 FMJ Hydraulic, Female Connection)",
-        ]
-    )
-    
-    detect_button = st.button("🔍 Auto-Detect Drawing Type & Path")
+    st.markdown("---")
+    st.markdown("**Detected Entity Type:** Child Drawing (Sub-Component)")
+    st.markdown("**Drawing Number:** W.021578-00-00")
+    st.markdown("**Path Mapping:** Assemblies/Mandrel/9GC1-550013/W.021578-00-00")
+    st.markdown("**Linked Master (Parent):** 9GC1-550013 (Mandrel Assembly)")
 
-with col_result:
-    st.markdown("#### ⚙️ System Recognition & Path Tracking Result")
-    
-    if detect_button or selected_preset != "Select Drawing...":
-        with st.spinner("Analyzing drawing metadata and tracking path..."):
-            time.sleep(0.8)
-            
-        st.success("✨ **Recognition Complete: Identified as Child Component!**")
-        st.markdown(
-            """
-            <div class="card">
-                <b>Detected Entity Type:</b> <span style="color: #2563EB;">Child Drawing (Sub-Component)</span><br>
-                <b>Drawing Number:</b> <code>W.021578-00-00</code><br>
-                <b>Path Mapping:</b> <code>Assemblies/Mandrel/9GC1-550013/W.021578-00-00</code><br>
-                <b>Linked Master (Parent):</b> <code>9GC1-550013</code> (Mandrel Assembly)<br>
-            </div>
-            """,
-            unsafe_allow_html=True,
-        )
-    else:
-        st.info("Awaiting file selection to run auto-detection...")
-
-st.divider()
-
-# Section: Propagation & Proof of Update on Parent Drawing
+# Vendor Live Sync Section
+st.markdown("---")
 st.markdown("### 🔄 Vendor Live Sync & Parent Drawing Verification")
+v_col1, v_col2 = st.columns(2)
 
-col_action1, col_action2 = st.columns(2, gap="large")
+with v_col1:
+    st.markdown("**External Vendor Portals**")
+    st.markdown("- [Open Tenaris DCP Portal](#)")
+    st.markdown("- [Open VAM Services Configurator](#)")
 
-with col_action1:
-    st.markdown("#### External Vendor Portals")
-    st.markdown(
-        '<a href="https://dcp.tenaris.com/" target="_blank">🔗 Open Tenaris DCP Portal</a>',
-        unsafe_allow_html=True,
-    )
-    st.markdown(
-        '<a href="https://www.vamservices.com/product/configurator" target="_blank">🔗 Open VAM Services Configurator</a>',
-        unsafe_allow_html=True,
-    )
-    
-    st.markdown("")
-    propagate_btn = st.button("🚀 Propagate Child Changes to Master (9GC1-550013)")
-
-with col_action2:
-    st.markdown("#### 📊 Parent Drawing Status & Verification Feed")
-    
-    # Session state to handle interactive propagation proof
-    if 'propagated' not in st.session_state:
-        st.session_state.propagated = False
-
-    if propagate_btn:
-        with st.spinner("Cascading updates across the assembly tree..."):
-            time.sleep(1.2)
-        st.session_state.propagated = True
-
-    if st.session_state.propagated:
-        st.markdown(
-            """
-            <div class="success-box">
-                <b>✅ Propagation Confirmed on Parent Drawing!</b><br>
-                <hr style="margin: 8px 0;">
-                <b>Master Drawing:</b> <code>9GC1-550013</code> (Mandrel Assembly)<br>
-                <b>Previous Status:</b> Rev A (Out of sync with child component)[cite: 1]<br>
-                <b>Updated Status:</b> <span style="color: #16a34a; font-weight: bold;">Rev B (Synchronized & Locked)</span><br>
-                <b>Change Log:</b> Thread profile and tolerance values from Child <code>W.021578-00-00</code> successfully injected into Master BOM table.[cite: 1]
-            </div>
-            """,
-            unsafe_allow_html=True,
-        )
-    else:
-        st.info("Click 'Propagate Child Changes to Master' to execute and verify the update transfer on the Parent Drawing.")
+with v_col2:
+    st.markdown("**📊 Parent Drawing Status & Verification Feed**")
+    st.info("Propagation Confirmed on Parent Drawing!")
