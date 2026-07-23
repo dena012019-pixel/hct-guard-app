@@ -24,15 +24,15 @@ st.markdown(
 
 # VAM Data with Custom Reference Names and Specifications
 vam_connections_data = {
-    "REF03500092021": {"Type": "VAM 21", "OD": 3.500, "Wall_Th": 0.254, "Weight": 9.20, "Drift": 2.867, "Pin_PED": "3.500 (+0.012/+0.031)", "Pin_PID": "2.976 (-0.020/0.000)", "Box_BED": "3.930 (0.000/+0.028)", "Box_BID": "2.961 (-0.020/0.000)"},[cite: 9]
-    "REF04500116021": {"Type": "VAM 21", "OD": 4.500, "Wall_Th": 0.250, "Weight": 11.60, "Drift": 3.875, "Pin_PED": "4.500 (+0.016/+0.045)", "Pin_PID": "3.959 (-0.020/0.000)", "Box_BED": "4.934 (0.000/+0.028)", "Box_BID": "3.942 (-0.020/0.000)"},[cite: 10]
-    "REF05000150021": {"Type": "VAM 21", "OD": 5.000, "Wall_Th": 0.296, "Weight": 15.00, "Drift": 4.283, "Pin_PED": "5.000 (+0.016/+0.050)", "Pin_PID": "4.364 (-0.020/0.000)", "Box_BED": "5.504 (0.000/+0.021)", "Box_BID": "4.345 (-0.020/0.000)"},[cite: 11]
+    "REF03500092021": {"Type": "VAM 21", "OD": 3.500, "Wall_Th": 0.254, "Weight": 9.20, "Drift": 2.867, "Pin_PED": "3.500 (+0.012/+0.031)", "Pin_PID": "2.976 (-0.020/0.000)", "Box_BED": "3.930 (0.000/+0.028)", "Box_BID": "2.961 (-0.020/0.000)"},
+    "REF04500116021": {"Type": "VAM 21", "OD": 4.500, "Wall_Th": 0.250, "Weight": 11.60, "Drift": 3.875, "Pin_PED": "4.500 (+0.016/+0.045)", "Pin_PID": "3.959 (-0.020/0.000)", "Box_BED": "4.934 (0.000/+0.028)", "Box_BID": "3.942 (-0.020/0.000)"},
+    "REF05000150021": {"Type": "VAM 21", "OD": 5.000, "Wall_Th": 0.296, "Weight": 15.00, "Drift": 4.283, "Pin_PED": "5.000 (+0.016/+0.050)", "Pin_PID": "4.364 (-0.020/0.000)", "Box_BED": "5.504 (0.000/+0.021)", "Box_BID": "4.345 (-0.020/0.000)"},
     "REF05500170021": {"Type": "VAM 21", "OD": 5.500, "Wall_Th": 0.304, "Weight": 17.00, "Drift": 4.767, "Pin_PED": "5.500 (+0.016/+0.055)", "Pin_PID": "4.892 (-0.020/0.000)", "Box_BED": "6.018 (0.000/+0.054)", "Box_BID": "4.891 (-0.020/0.000)"},
-    "REF023750460TOP": {"Type": "VAM TOP", "OD": 2.375, "Wall_Th": 0.190, "Weight": 4.60, "Drift": 1.901, "Pin_PED": "2.375 (+0.008/+0.031)", "Pin_PID": "1.969 (-0.010/+0.009)", "Box_BED": "2.677 (0.000/+0.029)", "Box_BID": "1.957 (-0.010/+0.009)"},[cite: 4]
-    "REF028750640TOP": {"Type": "VAM TOP", "OD": 2.875, "Wall_Th": 0.217, "Weight": 6.40, "Drift": 2.347, "Pin_PED": "2.875 (+0.008/+0.031)", "Pin_PID": "2.421 (-0.009/+0.010)", "Box_BED": "3.223 (0.000/+0.028)", "Box_BID": "2.409 (-0.010/+0.009)"},[cite: 5]
-    "REF035000650TOP": {"Type": "VAM TOP", "OD": 3.500, "Wall_Th": 0.170, "Weight": 6.50, "Drift": 3.035, "Pin_PED": "3.500 (+0.012/+0.031)", "Pin_PID": "3.118 (-0.009/+0.009)", "Box_BED": "3.771 (0.000/+0.028)", "Box_BID": "3.104 (-0.009/+0.010)"},[cite: 6]
-    "REF040000820TOP": {"Type": "VAM TOP", "OD": 4.000, "Wall_Th": 0.190, "Weight": 8.20, "Drift": 3.495, "Pin_PED": "4.000 (+0.012/+0.031)", "Pin_PID": "3.583 (-0.010/+0.009)", "Box_BED": "4.300 (0.000/+0.029)", "Box_BID": "3.567 (-0.009/+0.009)"},[cite: 7]
-    "REF045001050TOP": {"Type": "VAM TOP", "OD": 4.500, "Wall_Th": 0.224, "Weight": 10.50, "Drift": 3.927, "Pin_PED": "4.500 (+0.016/+0.045)", "Pin_PID": "4.016 (-0.010/+0.009)", "Box_BED": "4.859 (0.000/+0.028)", "Box_BID": "3.999 (-0.009/+0.010)"}[cite: 8]
+    "REF023750460TOP": {"Type": "VAM TOP", "OD": 2.375, "Wall_Th": 0.190, "Weight": 4.60, "Drift": 1.901, "Pin_PED": "2.375 (+0.008/+0.031)", "Pin_PID": "1.969 (-0.010/+0.009)", "Box_BED": "2.677 (0.000/+0.029)", "Box_BID": "1.957 (-0.010/+0.009)"},
+    "REF028750640TOP": {"Type": "VAM TOP", "OD": 2.875, "Wall_Th": 0.217, "Weight": 6.40, "Drift": 2.347, "Pin_PED": "2.875 (+0.008/+0.031)", "Pin_PID": "2.421 (-0.009/+0.010)", "Box_BED": "3.223 (0.000/+0.028)", "Box_BID": "2.409 (-0.010/+0.009)"},
+    "REF035000650TOP": {"Type": "VAM TOP", "OD": 3.500, "Wall_Th": 0.170, "Weight": 6.50, "Drift": 3.035, "Pin_PED": "3.500 (+0.012/+0.031)", "Pin_PID": "3.118 (-0.009/+0.009)", "Box_BED": "3.771 (0.000/+0.028)", "Box_BID": "3.104 (-0.009/+0.010)"},
+    "REF040000820TOP": {"Type": "VAM TOP", "OD": 4.000, "Wall_Th": 0.190, "Weight": 8.20, "Drift": 3.495, "Pin_PED": "4.000 (+0.012/+0.031)", "Pin_PID": "3.583 (-0.010/+0.009)", "Box_BED": "4.300 (0.000/+0.029)", "Box_BID": "3.567 (-0.009/+0.009)"},
+    "REF045001050TOP": {"Type": "VAM TOP", "OD": 4.500, "Wall_Th": 0.224, "Weight": 10.50, "Drift": 3.927, "Pin_PED": "4.500 (+0.016/+0.045)", "Pin_PID": "4.016 (-0.010/+0.009)", "Box_BED": "4.859 (0.000/+0.028)", "Box_BID": "3.999 (-0.009/+0.010)"}
 }
 
 # Main Layout Structure matching user interface
@@ -119,7 +119,7 @@ if selected_drawing in vam_connections_data:
 else:
     st.info("Select a VAM Reference code from Active Session to view propagated features and specifications.")
 
-# NEW: Vendor Data & Parent Drawing Match Verification Box
+# Vendor-to-Parent Data Matching & Synchronization Verification Box
 st.markdown("---")
 st.markdown("### 🎯 Vendor-to-Parent Data Matching & Synchronization Verification")
 if selected_drawing in vam_connections_data:
@@ -129,8 +129,8 @@ if selected_drawing in vam_connections_data:
         <div class="match-box">
             <h4>🔍 Cross-Check & Compliance Match Report</h4>
             <ul>
-                <li><b>Reference ID:</b> {selected_drawing} ({item['Type']})[cite: 9]</li>
-                <li><b>Vendor Specs Compliance:</b> Verified (OD: {item['OD']} in, Weight: {item['Weight']} lb/ft)[cite: 9]</li>
+                <li><b>Reference ID:</b> {selected_drawing} ({item['Type']})</li>
+                <li><b>Vendor Specs Compliance:</b> Verified (OD: {item['OD']} in, Weight: {item['Weight']} lb/ft)</li>
                 <li><b>Parent Drawing Link (9GC1-550013):</b> <span style="color: green; font-weight: bold;">Synchronized & Matched Successfully</span></li>
                 <li><b>Data Propagation Status:</b> 100% Verified across Engineering Vault Nodes.</li>
             </ul>
